@@ -263,6 +263,16 @@ class Program
         Platform[] platforms = Cl.GetPlatformIDs(out error);
         var platform = platforms[0];
         Device[] devices = Cl.GetDeviceIDs(platform, DeviceType.Gpu, out error);
+        for (int i = 0; i < devices.Length; i++)
+        {
+            var name = Cl.GetDeviceInfo(devices[i], DeviceInfo.Name, out error);
+            Console.WriteLine($"Device {i}: {name}");
+        }
+        if (devices.Length == 0)
+        {
+            Console.WriteLine("No GPU devices found.");
+        }
+        Console.WriteLine($"Using device {0}: {Cl.GetDeviceInfo(devices[0], DeviceInfo.Name, out error)}");
         device = devices[0];
         var context = Cl.CreateContext(null, 1, new[] { device }, null, IntPtr.Zero, out error);
         queue = Cl.CreateCommandQueue(context, device, (CommandQueueProperties)0, out error);

@@ -18,9 +18,9 @@
 
     <ItemGroup>
       <None Remove="dictionary.txt" />
-      <Resource Include="dictionary.txt">
+      <AdditionalFiles Include="dictionary.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+      </AdditionalFiles>
     </ItemGroup>
 
 </Project>
